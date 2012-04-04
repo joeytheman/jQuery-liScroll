@@ -1,4 +1,7 @@
 ###
+  Updated 4-3-2012
+  Removed each loop to stop browser cpu spiking in chrome
+  
   liScroll 1.0
   Examples and documentation at: 
   http://www.gcmingati.net/wordpress/wp-content/lab/jquery/newsticker/jq-liscroll/scrollanimate.html
