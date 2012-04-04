@@ -14,31 +14,30 @@
 jQuery.fn.liScroll = (settings) ->
   settings = jQuery.extend(
     travelocity: 0.07
-  , settings)
-  @each ->
+    , settings)
+  for list_item in @
     scrollnews = (spazio, tempo) ->
-      $strip.animate
+      strip.animate
         left: "-=" + spazio
-      , tempo, "linear", ->
-        $strip.css "left", containerWidth
-        scrollnews totalTravel, defTiming
-    $strip = jQuery(this)
-    $strip.addClass "newsticker"
+        , tempo, "linear", ->
+          strip.css "left", containerWidth
+          scrollnews totalTravel, defTiming
+    strip = jQuery(list_item)
+    strip.addClass "newsticker"
     stripWidth = 1
-    $strip.find("li").each (i) ->
-      stripWidth += jQuery(this, i).outerWidth(true)
-
-    $mask = $strip.wrap("<div class='mask'></div>")
-    $tickercontainer = $strip.parent().wrap("<div class='tickercontainer'></div>")
-    containerWidth = $strip.parent().parent().width()
-    $strip.width stripWidth
+    for strip_li in strip.find("li")
+      stripWidth += jQuery(list_item, strip_li).outerWidth(true)
+    mask = strip.wrap('<div class="mask"></div>')
+    tickercontainer = strip.parent().wrap("<div class='tickercontainer'></div>")
+    containerWidth = strip.parent().parent().width()
+    strip.width stripWidth
     totalTravel = stripWidth + containerWidth
     defTiming = totalTravel / settings.travelocity
     scrollnews totalTravel, defTiming
-    $strip.hover (->
-      jQuery(this).stop()
+    strip.hover (->
+      jQuery(list_item).stop()
     ), ->
-      offset = jQuery(this).offset()
+      offset = jQuery(list_item).offset()
       residualSpace = offset.left + stripWidth
       residualTime = residualSpace / settings.travelocity
       scrollnews residualSpace, residualTime
