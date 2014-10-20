@@ -15,12 +15,15 @@
 
 jQuery.fn.liScroll = function(settings) {
 		settings = jQuery.extend({
-		travelocity: 0.07
+		travelocity: 0.07,
+		extraWidth:1
 		}, settings);		
 		return this.each(function(){
 				var $strip = jQuery(this);
 				$strip.addClass("newsticker")
-				var stripWidth = 1;
+				var extraWidth =settings.extraWidth;
+				var stripWidth = extraWidth;
+
 				$strip.find("li").each(function(i){
 				stripWidth += jQuery(this, i).outerWidth(true); // thanks to Michael Haszprunar and Fabien Volpi
 				});
